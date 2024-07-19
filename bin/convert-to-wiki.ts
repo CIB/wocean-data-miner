@@ -6,19 +6,26 @@ import lua from "lua-json";
 import { processData } from "../src/process-data";
 import { writeFile } from "fs/promises";
 
+export function formatLua(data: any) {
+  const escapedData = JSON.parse(
+    JSON.stringify(data).replaceAll("\\n", "\\\\n")
+  );
+  return lua.format(escapedData);
+}
+
 export function enemiesToLua() {
   const processed = values(enemies).map(processEnemy);
-  return lua.format(processed);
+  return formatLua(processed);
 }
 
 export function statesToLua() {
   const processed = values(states).map(processState);
-  return lua.format(processed);
+  return formatLua(processed);
 }
 
 export function itemsToLua() {
   const processed = values(items).map(processItem);
-  return lua.format(processed);
+  return formatLua(processed);
 }
 
 if (import.meta.main) {
