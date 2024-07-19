@@ -1,5 +1,6 @@
 import { enemies, processEnemy } from "../src/data-extraction/parse-enemies";
 import { states, processState } from "../src/data-extraction/states";
+import { items, processItem } from "../src/data-extraction/parse-items";
 import { values } from "lodash";
 import lua from "lua-json";
 import { processData } from "../src/process-data";
@@ -12,7 +13,12 @@ export function enemiesToLua() {
 
 export function statesToLua() {
   const processed = values(states).map(processState);
-  console.log(lua.format(processed));
+  return lua.format(processed);
+}
+
+export function itemsToLua() {
+  const processed = values(items).map(processItem);
+  return lua.format(processed);
 }
 
 if (import.meta.main) {
@@ -27,4 +33,5 @@ if (import.meta.main) {
   await processData(directory);
   await writeFile("./wiki-output/enemies.lua", enemiesToLua());
   await writeFile("./wiki-output/states.lua", enemiesToLua());
+  await writeFile("./wiki-output/items.lua", itemsToLua());
 }
