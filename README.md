@@ -22,3 +22,5 @@ Open a terminal (Visual Studio Code recommended) and execute the following comma
 bun install
 bun run wiki -- ${wocean-install}/Data/rgss-db
 ```
+
+This will extract .lua files into the `wiki-output/` directory. The content of these files can be directly pasted into a script page on https://woodenocean.wiki.gg/
