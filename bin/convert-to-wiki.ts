@@ -39,6 +39,6 @@ if (import.meta.main) {
   }
   await processData(directory);
   await writeFile("./wiki-output/enemies.lua", enemiesToLua());
-  await writeFile("./wiki-output/states.lua", enemiesToLua());
+  await writeFile("./wiki-output/states.lua", statesToLua());
   await writeFile("./wiki-output/items.lua", itemsToLua());
 }
